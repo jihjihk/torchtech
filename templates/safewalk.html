@@ -1,109 +1,71 @@
 <!DOCTYPE HTML>
-
 <html>
-	<head>
-		<title>Viable - Graph</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" />
-		
-	</head>
-	<body class="subpage">
+<head>
+	<title>Torch Tech</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+	<style>
+	    .navbar-toggler {
+	        z-index: 1;
+	    }
+	    
+	    @media (max-width: 576px) {
+	        nav > .container {
+	            width: 100%;
+	        }
+	    }
+	    </style>
+</head>
+<body id="page-top">
+	<!-- Nav -->
+	<nav class="navbar" id="mainNav">
+		<div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#profile">Profile</a>
+                </li>
+            </ul>
+        </div> 
+	</nav> 
 
-		<!-- Header -->
-			<header id="header">
-				<div class="logo"><a href="index.html">TORCHTECH</a></div>
-				
-			</header>
-
-		<!-- Nav -->
-		<!-- 	<nav id="menu">
-				<ul class="links">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="generic.html">login</a></li>
-					<li><a href="elements.html">register</a></li>
-				</ul>
-			</nav>
--->
-		<!-- Main -->
-			<div id="main">
-
-				<!-- Section -->
-					<section class="wrapper">
-						<div class="inner">
-							<header class="align-center">
-																
-							</header>
-
-							<!-- Form -->
-										<h3>YOUR START LOCATION?</h3>
-
-										<form action="index.html">
-											<div class="row uniform">
-												<div class="6u 12u$(xsmall)">
-												<input type="enter" name="enter" id="name" value="" placeholder="enter" />
-												</div>
-												<h3>YOUR END LOCATION?</h3>
-												<div class="6u$ 12u$(xsmall)">
-												<input type="enter" name="enter" id="email" value="" placeholder="enter" />
-												</div>
-												<!-- Break -->
-												
-												<!-- Break -->
-												<div class="4u 12u$(small)">
-													
-												
-												<!-- Break -->
-												
-												<!-- Break -->
-												<div class="12u$">
-													<ul class="actions">
-														<li><input type="submit" onclick="myFunction() "value="DONE" /></li>
-														<li><input type="reset"
-														onclick="myFunction1() "
-														 value="Cancel" /></li>
-
-													</ul>
-												</div>
-											</div>
-										</form>
-
-									
-							</div>
-
-			</section>
-
-			</div>
+<!-- Banner -->
+	<section id="about">
+        <div class="container">
+            <div class="row center-block">
+                <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-xl-8 col-xl-offset-2">
+	                <h1 class="section-heading text-center" style="text-transform: initial;">input the feilds for some one to walk you home safe</h1>
+	            </div>
+	        </div>
+	        <div class="row">
+	           	<div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 col-xl-6 col-xl-offset-3 multichoice">
+	                <br>
+	             	<div class="form-group">
+  					<label for="comment">start location:</label>
+  					<textarea class="form-control" rows="1" id="comment"></textarea>
+					</div> 
+					<div class="form-group">
+  					<label for="comment">end location:</label>
+  					<textarea class="form-control" rows="1" id="comment"></textarea>
+					</div>
 
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="copyright">
-					<ul class="icons">
-						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="https://www.facebook.com/4C-220271621791497/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
-					</ul>
-					<p>&copy; Untitled. All rights reserved.</p>
-				</div>
-			</footer>
+
+
+
+					<br>
+					<a href="{{ url_for('safewalk_btn') }}" class="btn-xl btn btn-default center-block" style="margin:auto;display:block;">Submit</a>
+                </div>
+
+            </div>
+		</div>
+	</section>
 
 		<!-- Scripts -->
-		<script>
-
-function myFunction() {
-    alert("your help will arrive in 10 mins!");
-}
-
-function myFunction1() {
-    alert("oops!, please go back to the pervious page");
-}
-</script>
-
-
-</script>
-   </script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
