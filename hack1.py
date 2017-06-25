@@ -13,12 +13,12 @@ conn = sqlite3.connect('hack1.sqlite')
 cur = conn.cursor()
 
 cur.executescript('''
-
-CREATE TABLE IF NOT EXISTS People (
-id     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-name   TEXT UNIQUE,
-num    TEXT UNIQUE,
-location TEXT UNIQUE 
+DROP TABLE IF EXISTS People;
+CREATE TABLE People (
+    id     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    name   TEXT UNIQUE,
+    num    TEXT UNIQUE,
+    location TEXT UNIQUE 
 );
 ''')
 
