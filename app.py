@@ -23,7 +23,7 @@ def danger_btn():
 def safewalk_btn():
 	if request.method == 'POST':
 		return redirect(url_for('index'))
-	return render_template('safewalk.html')
+	return render_template('safewalk_res.html')
 
 
 @app.route('/submit', methods=['GET', 'POST'])
@@ -31,6 +31,7 @@ def submit_btn():
 	if request.method == 'POST':
 		return redirect(url_for('index'))
 	return render_template('urgent.html')
+
 
 
 
