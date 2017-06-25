@@ -38,20 +38,25 @@
         <div class="container">
             <div class="row center-block">
                 <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-xl-8 col-xl-offset-2">
-	                <h1 class="section-heading text-center" style="text-transform: initial;">input the feilds for some one to walk you home safe</h1>
+	                <h1 class="section-heading text-center" style="text-transform: initial;">What kind of danger are you in?</h1>
 	            </div>
 	        </div>
 	        <div class="row">
 	           	<div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 col-xl-6 col-xl-offset-3 multichoice">
-	                
-
-	           		<div class="alert alert-success">
-  					<strong>Success!</strong> Indicates a successful or positive action.
+	                <br>
+	                <div class="checkbox">
+						<label><input type="checkbox" value=""> Verbal Assault</label>
 					</div>
-
-
-
-
+					<div class="checkbox">
+						<label><input type="checkbox" value=""> Bullying</label>
+					</div>
+					<div class="checkbox disabled">
+						<label><input type="checkbox" value=""> Intoxication</label>
+					</div>
+					<div class="checkbox disabled">
+						<label><input type="checkbox" value=""> Other</label>
+					</div>
+					<br>
 					<a href="{{ url_for('safewalk_btn') }}" class="btn-xl btn btn-default center-block" style="margin:auto;display:block;">Submit</a>
                 </div>
 
