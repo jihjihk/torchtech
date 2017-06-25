@@ -1,5 +1,5 @@
 from flask import Flask, request, url_for, redirect, render_template
-from flask_googlemaps import GoogleMaps
+#from flask_googlemaps import GoogleMaps
 import urllib.request
 import json
 import requests
@@ -14,7 +14,6 @@ from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 
 back = list()
-
 freegeoip = "http://freegeoip.net/json"
 geo_r = requests.get(freegeoip)
 geo_json = geo_r.json()
@@ -126,7 +125,7 @@ def smallest():
             #print(nearest)
             place = curr
             back.append([name,num,location])
-            
+
     cursor.execute(''' DELETE FROM People WHERE name = ( ? )''', (thisname, )) 
     conn.commit()
     #print(thisname,nearest)
