@@ -32,7 +32,7 @@ def submit_btn():
 		return redirect(url_for('index'))
 	return render_template('urgent.html')
 
-@app.route('/submit', methods=['GET', 'POST'])
+@app.route('/done', methods=['GET', 'POST'])
 def safe_submit_btn():
 	if request.method == 'POST':
 		return redirect(url_for('index'))
