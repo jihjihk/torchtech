@@ -38,9 +38,6 @@ def safewalk_btn():
 		return redirect(url_for('index'))
 	return render_template('safewalk.html')
 
-<<<<<<< HEAD
-=======
-
 @app.route('/submit', methods=['GET', 'POST'])
 def submit_btn():
 	if request.method == 'POST':
@@ -53,14 +50,6 @@ def safe_submit_btn():
 		return redirect(url_for('index'))
 	return render_template('safewalk_res.html')
 
-
-
-
-
-
-
-
 if __name__ == "__main__":
     app.run(debug=True)
->>>>>>> origin/master
 
