@@ -133,7 +133,6 @@ def smallest():
     #print(thisnum)
     return twil(thisnum)
     
-
 def sending():
     first = smallest()
     second = smallest()
@@ -157,5 +156,3 @@ def sending():
 
 sending()
 return (result)
-
-
