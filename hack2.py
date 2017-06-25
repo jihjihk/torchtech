@@ -1,5 +1,3 @@
-#ADD LI'S NUMBER 
-#make sure return is working, its a json file
 import urllib
 import json
 import requests
@@ -25,7 +23,7 @@ lat_lon_sos = (user_position[0], user_position[1])
 result = None
 
 def initialize():
-    url = "https://api.myjson.com/bins/10fryj"
+    url = +17186759905
 
 
     data = urllib.urlopen(url)
@@ -64,7 +62,7 @@ def twil(num):
     client.messages.create(
         to = num,
         from_ = "+13475149453",
-        body = "SOS. Help needed at link. Reply 1 if you are willing to help. Reply 0 if you arent willing to help."
+        body = "Urgent. Help needed. Reply 1 if you are willing to help. Reply 0 if you arent willing to help."
         )
     if str(num) == '+14122189595':
         return 0
@@ -130,7 +128,7 @@ def smallest():
     conn.commit()
     #print(thisname,nearest)
     result = json_msg(thisname,nearest)
-    #print(thisnum)
+    print(thisnum)
     return twil(thisnum)
     
 
@@ -156,6 +154,5 @@ def sending():
          VALUES ( ? , ? , ? )''', (item[0],item[1],item[2] ) )
 
 sending()
-return (result)
 
 
