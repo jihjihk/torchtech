@@ -1,6 +1,7 @@
 import urllib
 import json
-import sqlite
+import sqlite3
+import geopy
 from geopy.distance import vincenty
 from geopy.geocoders import Nominatim
 import xml.etree.ElementTree as ET
@@ -8,7 +9,6 @@ import os
 from twilio.rest import Client
 from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import messaging_response
-
 
 while True:
     if len(url)<1: break
@@ -21,30 +21,31 @@ while True:
     lat_lon_sos = (user_position[0], user_position[1])
 
     
-    conn = sqlite.connect('hack1.sqlite')
+    conn = sqlite3.connect('hack1.sqlite')
     cursor = conn.cursor()
     table = cursor.fetchall()
 
-    
+
+    app = Fask(__name__)
+    @app.route("/sms", method = ['GET','POST'])
+
+    def sms_reply():
+        resp = MessagingResponse()
+        resp.message("Thank you")
+        return str(resp)
+
     def twil(num):
-        account_sid = 
-        auth_token = 
+        account_sid = 'ACed10e34bac3a56da30b364c7eb639799'
+        auth_token = 'f04d7af9f40effaceb83d1b6f2946a62'
 
         client = Client(account_sid,auth_token)
 
         client.messages.create(
             to = num,
-            from_ = "purchased num",
+            from_ = "+13475149453",
             body = "SOS. Help needed at link. Reply 1 if you are willing to help. Reply 0 if you arent willing to help."
             )
-
-        
-        app = Fask(__name__)
-
-        @app.route("/sms", method = ['GET','POST'])
-        resp = MessagingResponse()
-        resp.message("Thank you")
-        return int(resp)
+        return int(sms_reply())
 
     def json_msg(name,dist):
 
@@ -106,7 +107,7 @@ while True:
                 first = smallest()
             elif first ==1 and second != 1 and third == 1:
                 second = smallest()
-            elif first ==1 and second = 1 and third != 1:
+            elif first ==1 and second == 1 and third != 1:
                 third = smallest()
             else:
                 break
