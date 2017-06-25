@@ -25,6 +25,17 @@ def safewalk_btn():
 		return redirect(url_for('index'))
 	return render_template('safewalk.html')
 
+
+@app.route('/submit', methods=['GET', 'POST'])
+def submit_btn():
+	if request.method == 'POST':
+		return redirect(url_for('index'))
+	return render_template('urgent.html')
+
+
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 
