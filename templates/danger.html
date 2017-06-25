@@ -1,65 +1,68 @@
 <!DOCTYPE HTML>
-
 <html>
-	<head>
-		<title>TORCHTECH</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" />
-	</head>
-	<body class="subpage">
+<head>
+	<title>Torch Tech</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+	<style>
+	    .navbar-toggler {
+	        z-index: 1;
+	    }
+	    
+	    @media (max-width: 576px) {
+	        nav > .container {
+	            width: 100%;
+	        }
+	    }
+	    </style>
+</head>
+<body id="page-top">
+	<!-- Nav -->
+	<nav class="navbar" id="mainNav">
+		<div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#profile">Profile</a>
+                </li>
+            </ul>
+        </div> 
+	</nav> 
 
-		<!-- Header -->
-			<header id="header">
-				<div class="logo"><a href="index.html">TORCHTECH</a>
-				<!-- </div>
-				<a href="#menu">Menu</a> -->
-			</header>
-
-		
-		<!-- Banner -->
-			<section id="banner">
-				<div class="inner">
-					<header>
-
-					<a href="elements.html" class="button big scrolly">VERBAL ASSULT</a> </a>
-					</p>
-
-					<a href="elements.html" class="button big scrolly">BULLYING</a>
-					</p>
-
-					<a href="elements.html" class="button big scrolly">INTOXICATION </a>
-
-					</p>
-
-					<a href="gra.html" class="button big scrolly">OTHER </a>
-
-
-				</div>
-
-			</section>
-		<!-- Main -->
-			<div id="main">
-				<section class="wrapper style1">
-					<div class="inner">
-						<header class="align-center">	</header>
+<!-- Banner -->
+	<section id="about">
+        <div class="container">
+            <div class="row center-block">
+                <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-xl-8 col-xl-offset-2">
+	                <h1 class="section-heading text-center" style="text-transform: initial;">What kind of danger are you in?</h1>
+	            </div>
+	        </div>
+	        <div class="row">
+	           	<div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 col-xl-6 col-xl-offset-3 multichoice">
+	                <br>
+	                <div class="checkbox">
+						<label><input type="checkbox" value=""> Verbal Assault</label>
 					</div>
-				</section>
-			</div>
-			
+					<div class="checkbox">
+						<label><input type="checkbox" value=""> Bullying</label>
+					</div>
+					<div class="checkbox disabled">
+						<label><input type="checkbox" value=""> Intoxication</label>
+					</div>
+					<div class="checkbox disabled">
+						<label><input type="checkbox" value=""> Other</label>
+					</div>
+					<br>
+					<a href="{{ url_for('safewalk_btn') }}" class="btn-xl btn btn-default center-block" style="margin:auto;display:block;">Submit</a>
+                </div>
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="copyright">
-					<ul class="icons">
-						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
-					</ul>
-					<p>&copy; Untitled. All rights reserved. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.</p>
-				</div>
-			</footer>
+            </div>
+		</div>
+	</section>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>

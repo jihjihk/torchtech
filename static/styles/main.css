@@ -46,7 +46,7 @@ section {
   section {
     padding: 50px 0; } }
 #about {
-  padding: 200px 0px 100px 0px;
+  padding: 100px 0px 100px 0px;
 }
 
 ::-moz-selection {
@@ -177,12 +177,16 @@ header.masthead {
 .text-primary {
   color: #fed136 !important; }
 
+.all-center {
+  text-align: center;
+}
+
 .btn-xl {
-	font-size: 30px;
+	font-size: 30px !important;
 	letter-spacing: 2px;
-	font-weight: bold;
-	padding: 20px;
-	min-width: 50%;
+	font-weight: bold !important;
+	padding: 20px !important;
+	min-width: 70%;
   border-radius: 3px;
   color: white;
   border-color: #452a6e;
@@ -221,3 +225,83 @@ header.masthead {
   .btn-xl .badge {
     color: #271046;
     background-color: white; }
+
+#footer {
+    padding: 6em 2em 4em 2em;
+  }
+
+    #footer > .inner {
+      margin: 0 auto;
+      width: 80em;
+    }
+
+    #footer .copyright {
+      color: #bfbfbf;
+      font-size: 0.9em;
+      margin: 0 0 2em 0;
+      padding: 0;
+      text-align: center;
+    }
+
+      #footer .copyright .icons a {
+        border-radius: 100%;
+        box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 4px #fff, 0px 0px 0px 5px rgba(0, 0, 0, 0.1);
+        display: block;
+        font-size: 1em;
+        height: 3em;
+        line-height: 3em;
+        margin: 0 auto 0.7em;
+        text-align: center;
+        width: 3em;
+      }
+
+    @media screen and (max-width: 1280px) {
+
+      #footer > .inner {
+        width: 65em;
+      }
+
+    }
+
+    @media screen and (max-width: 980px) {
+
+      #footer > .inner {
+        width: 90%;
+      }
+
+    }
+
+    @media screen and (max-width: 736px) {
+
+      #footer {
+        padding: 3em 1em 1em 1em;
+      }
+
+    }
+
+/* Icon */
+
+  .icon {
+    text-decoration: none;
+    border-bottom: none;
+    position: relative;
+  }
+
+    .icon:before {
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      font-family: FontAwesome;
+      font-style: normal;
+      font-weight: normal;
+      text-transform: none !important;
+    }
+
+    .icon > .label {
+      display: none;
+    }
+
+.multichoice {
+  font-size: 24px;
+  font-weight: bold;
+
+}
