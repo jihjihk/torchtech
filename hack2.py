@@ -131,7 +131,6 @@ def smallest():
     print(thisnum)
     return twil(thisnum)
     
-
 def sending():
     first = smallest()
     second = smallest()
@@ -154,5 +153,9 @@ def sending():
          VALUES ( ? , ? , ? )''', (item[0],item[1],item[2] ) )
 
 sending()
+<<<<<<< HEAD
 
 
+=======
+return (result)
+>>>>>>> 091ac9ec7d6a0127784ba80a0b3948224e7fe435
