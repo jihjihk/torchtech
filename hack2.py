@@ -86,28 +86,15 @@ conn.close()
 def sending():
     first = smallest()
     second = smallest()
-    third = smallest()
 
     while True:
-        if first != 1 and second != 1 and third != 1: 
+        if first != 1 and second != 1:
             first = smallest()
             second = smallest()
-            third = smallest()
-        elif first ==1 and second != 1 and third != 1:
-            second = smallest()
-            third = smallest()
-        elif first !=1 and second == 1 and third != 1:
+        elif first != 1 and second == 1:
             first = smallest()
-            third = smallest()
-        elif first !=1 and second != 1 and third == 1:
+        if first == 1 and second != 1:
             second = smallest()
-            first = smallest()
-        elif first !=1 and second == 1 and third == 1:
-            first = smallest()
-        elif first ==1 and second != 1 and third == 1:
-            second = smallest()
-        elif first ==1 and second == 1 and third != 1:
-            third = smallest()
         else:
             break
 

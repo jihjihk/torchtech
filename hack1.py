@@ -1,32 +1,33 @@
 import urllib
 import json
-import sqlite
+import sqlite3
 import xml.etree.ElementTree as ET
 
-url = #same link each time, add that link here 
+url = "https://api.myjson.com/bins/erd1v"
 
-if len(url)<1: break
 
 data = urllib.urlopen(url)
-tree = json.load(data)
-name = tree['name']
-numb = tree['number']
-location = tree['location']
+trees = json.load(data)
 
 conn = sqlite3.connect('hack1.sqlite')
 cur = conn.cursor()
 
 cur.executescript('''
-
-CREATE TABLE IF NOT EXISTS People (
+DROP TABLE IF EXISTS People;
+CREATE TABLE People (
     id     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
     name   TEXT UNIQUE,
     num    TEXT UNIQUE,
     location TEXT UNIQUE 
-    );
+);
 ''')
 
-cur.execute('''INSERT OR IGNORE INTO People (name,num,location) 
-    VALUES ( ? )''', ( name,num,location ) )
+for tree in trees:
+    name = tree['name']
+    num = tree['num']
+    location = tree['location']
 
-conn.commit()
+    cur.execute('''INSERT OR IGNORE INTO People (name,num,location) 
+    VALUES ( ? , ? , ? )''', ( name,num,location ) )
+
+    conn.commit()
