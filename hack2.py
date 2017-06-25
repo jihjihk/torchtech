@@ -36,7 +36,7 @@ while True:
         client.messages.create(
             to = num,
             from_ = "purchased num",
-            body = "SOS. Help needed at link"
+            body = "SOS. Help needed at link. Reply 1 if you are willing to help. Reply 0 if you arent willing to help."
             )
 
         
@@ -58,6 +58,7 @@ while True:
         info = json.loads(data)
         return info
 
+    back = list()
     def smallest():
         place = None
         nearest = None
@@ -75,7 +76,8 @@ while True:
             if dist < nearest:
                 nearest = dist
                 place = curr
-        cursor.executescript(''' DELETE FROM People WHERE location = ( ? )''', (place,)) #add back after you have found three people
+                back.append([name,num,location])
+        cursor.executescript(''' DELETE FROM People WHERE location = ( ? )''', (place,)) 
         json_msg(name,nearest)
         return twil(num)
         
@@ -110,6 +112,10 @@ while True:
             else:
                 break
 
+        for item in back:
+            cur.execute('''INSERT OR IGNORE INTO People (name,num,location) 
+            VALUES ( ? )''', (item[0],item[1],item[2] ) )
+            
     
 
 

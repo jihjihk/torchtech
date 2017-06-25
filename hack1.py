@@ -26,10 +26,7 @@ while True:
         );
     ''')
 
-    cur.execute('''INSERT OR IGNORE INTO People (name) 
-        VALUES ( ? )''', ( name, ) )
-    cur.execute('''INSERT OR IGNORE INTO People (num)
-        VALUES ( ? )''', ( num, ) )
-    cur.execute('''INSERT OR IGNORE INTO People (location)
-        VALUES ( ? )''', ( location, ) )
+    cur.execute('''INSERT OR IGNORE INTO People (name,num,location) 
+        VALUES ( ? )''', ( name,num,location ) )
+    
     conn.commit()
