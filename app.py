@@ -119,13 +119,14 @@ def smallest():
         #print(lat_lon_sos)
         dist = vincenty(lat_lon_sos, row_loc).miles
         #print(dist)
-        if dist < nearest or nearest == None:
+        if nearest == None or dist < nearest:
             nearest = dist
             thisname = name
             thisnum = num
             #print(nearest)
             place = curr
             back.append([name,num,location])
+            
     cursor.execute(''' DELETE FROM People WHERE name = ( ? )''', (thisname, )) 
     conn.commit()
     #print(thisname,nearest)
