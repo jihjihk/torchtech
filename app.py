@@ -1,5 +1,18 @@
 from flask import Flask, request, url_for, redirect, render_template
+from flask_googlemaps import GoogleMaps
 app = Flask(__name__)
+
+app.config['GOOGLEMAPS_KEY'] = 'AIzaSyDyE1UKnLzLEDT6Vis_Yaq39FEsPgVMQYQ'
+GoogleMaps(app)
+GoogleMaps(app, key="AIzaSyDyE1UKnLzLEDT6Vis_Yaq39FEsPgVMQYQ")
+
+freegeoip = "http://freegeoip.net/json"
+geo_r = requests.get(freegeoip)
+geo_json = geo_r.json()
+
+user_postition = [geo_json["latitude"], geo_json["longitude"]]
+
+print(user_postition)
 
 @app.route('/')
 def index():
@@ -25,6 +38,4 @@ def safewalk_btn():
 		return redirect(url_for('index'))
 	return render_template('safewalk.html')
 
-if __name__ == "__main__":
-    app.run(debug=True)
 
