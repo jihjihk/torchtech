@@ -1,33 +1,29 @@
+#ADD LI'S NUMBER
 import urllib
 import json
+import requests
 import sqlite3
+import geopy
+from geopy.distance import vincenty
+from geopy.geocoders import Nominatim
 import xml.etree.ElementTree as ET
+import os
+from twilio.rest import Client
+from flask import Flask, request, redirect
+from twilio.twiml.messaging_response import MessagingResponse
 
-url = "https://api.myjson.com/bins/erd1v"
+app = Flask(__name__)
 
+@app.route("/sms", methods=['GET', 'POST'])
+def sms_reply():
+    """Respond to incoming calls with a simple text message."""
+    # Start our TwiML response
+    resp = MessagingResponse()
 
-data = urllib.urlopen(url)
-trees = json.load(data)
+    # Add a message
+    resp.message("The Robots are coming! Head for the hills!")
 
-conn = sqlite3.connect('hack1.sqlite')
-cur = conn.cursor()
+    return str(resp)
 
-cur.executescript('''
-DROP TABLE IF EXISTS People;
-CREATE TABLE People (
-    id     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-    name   TEXT UNIQUE,
-    num    TEXT UNIQUE,
-    location TEXT UNIQUE 
-);
-''')
-
-for tree in trees:
-    name = tree['name']
-    num = tree['num']
-    location = tree['location']
-
-    cur.execute('''INSERT OR IGNORE INTO People (name,num,location) 
-    VALUES ( ? , ? , ? )''', ( name,num,location ) )
-
-    conn.commit()
+if __name__ == "__main__":
+    app.run(debug=True)

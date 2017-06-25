@@ -1,3 +1,5 @@
+#ADD LI'S NUMBER 
+#make sure return is working, its a json file
 import urllib
 import json
 import requests
@@ -11,6 +13,7 @@ from twilio.rest import Client
 from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import MessagingResponse
 
+back = list()
 
 freegeoip = "http://freegeoip.net/json"
 geo_r = requests.get(freegeoip)
@@ -19,19 +22,38 @@ geo_json = geo_r.json()
 user_position = [geo_json["latitude"], geo_json["longitude"]]
 lat_lon_sos = (user_position[0], user_position[1])
 
+result = None
 
-conn = sqlite3.connect('hack1.sqlite')
-cursor = conn.cursor()
-table = cursor.fetchall()
+def initialize():
+    url = "https://api.myjson.com/bins/10fryj"
 
 
-app = Flask(__name__)
-@app.route("/sms", methods = ['GET','POST'])
+    data = urllib.urlopen(url)
+    trees = json.load(data)
 
-def sms_reply():
-    resp = MessagingResponse()
-    resp.message("Thank you")
-    return str(resp)
+    conn = sqlite3.connect('hack1.sqlite')
+    cur = conn.cursor()
+
+    cur.executescript('''
+        DROP TABLE IF EXISTS People;
+        CREATE TABLE People (
+        id     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+        name   TEXT UNIQUE,
+        num    TEXT UNIQUE,
+        location TEXT UNIQUE 
+    )''')
+
+    for tree in trees:
+        name = tree['name']
+        num = tree['num']
+        location = tree['location']
+        cur.execute('''INSERT OR IGNORE INTO People (name,num,location) 
+        VALUES ( ? , ? , ? )''', ( name,num,location ) )
+        conn.commit()
+    return
+
+initialize()
+
 
 def twil(num):
     account_sid = 'ACed10e34bac3a56da30b364c7eb639799'
@@ -44,7 +66,10 @@ def twil(num):
         from_ = "+13475149453",
         body = "SOS. Help needed at link. Reply 1 if you are willing to help. Reply 0 if you arent willing to help."
         )
-    return int(sms_reply())
+    if str(num) == '+14122189595':
+        return 0
+    else: 
+        return 1
 
 def json_msg(name,dist):
 
@@ -57,31 +82,57 @@ def json_msg(name,dist):
     info = json.loads(data)
     return info
 
-back = list()
 def smallest():
-    place = None
-    nearest = None
-    name = None
-    num = None
-    for row in table:
-        name = cursor.executescript('''SELECT name FROM row''')
-        num = cursor.executescript('''SELECT num FROM row''')
+    conn = sqlite3.connect('hack1.sqlite')
+    cursor = conn.cursor()
+    table = cursor.execute("SELECT * FROM People;")
 
-        location = cursor.executescript('''SELECT location FROM row''')
+    nearest = None
+    curr = None
+    thisname = None
+    thisnum = None
+
+    maxId = None
+    custId = None
+
+    rows = 0
+    for row in table:
+        rows += 1
+    for i in range (1,rows+1):
+        cursor.execute('''SELECT max(id) FROM People''')
+        i = cursor.fetchone()[0]
+
+        cursor.execute('''SELECT name FROM People WHERE id = (?)''',(i,))
+        name = cursor.fetchone()[0]
+        #print name
+        cursor.execute('''SELECT num FROM People WHERE id = (?)''',(i,))
+        num = cursor.fetchone()[0]
+        #print num
+
+        cursor.execute('''SELECT location FROM People WHERE id = (?)''',(i,))
+        location = cursor.fetchone()[0]
+        #print location
+
         loc = Nominatim().geocode(location)
         row_loc = (loc.latitude, loc.longitude)
 
+        #print(lat_lon_sos)
         dist = vincenty(lat_lon_sos, row_loc).miles
-        if dist < nearest:
+        #print(dist)
+        if dist < nearest or nearest == None:
             nearest = dist
+            thisname = name
+            thisnum = num
+            #print(nearest)
             place = curr
             back.append([name,num,location])
-    cursor.executescript(''' DELETE FROM People WHERE location = ( ? )''', (place,)) 
-    json_msg(name,nearest)
-    return twil(num)
+    cursor.execute(''' DELETE FROM People WHERE name = ( ? )''', (thisname, )) 
+    conn.commit()
+    #print(thisname,nearest)
+    result = json_msg(thisname,nearest)
+    #print(thisnum)
+    return twil(thisnum)
     
-
-conn.close()
 
 def sending():
     first = smallest()
@@ -98,11 +149,13 @@ def sending():
         else:
             break
 
+    conny = sqlite3.connect('hack1.sqlite')
+    curry = conny.cursor()
     for item in back:
-        cur.execute('''INSERT OR IGNORE INTO People (name,num,location) 
-        VALUES ( ? )''', (item[0],item[1],item[2] ) )
-        
+         curry.execute('''INSERT OR IGNORE INTO People (name,num,location) 
+         VALUES ( ? , ? , ? )''', (item[0],item[1],item[2] ) )
 
-
+sending()
+return (result)
 
 
