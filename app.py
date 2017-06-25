@@ -24,6 +24,8 @@ lat_lon_sos = (user_position[0], user_position[1])
 
 result = None
 
+app = Flask(__name__)
+
 def initialize():
     url = "https://api.myjson.com/bins/10fryj"
     data = urllib.request.urlopen(url)
@@ -52,7 +54,6 @@ def initialize():
     return
 
 initialize()
-
 
 def twil(num):
     account_sid = 'ACed10e34bac3a56da30b364c7eb639799'
@@ -152,7 +153,6 @@ def sending():
     for item in back:
         curry.execute('''INSERT OR IGNORE INTO People (name,num,location) 
         VALUES ( ? , ? , ? )''', (item[0],item[1],item[2] ) )
-    return result
 
 @app.route('/')
 def index():
