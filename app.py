@@ -13,7 +13,7 @@ import xml.etree.ElementTree as ET
 import os
 from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
-import twiliocall
+#import twiliocall
 
 app = Flask(__name__)
 
@@ -25,7 +25,7 @@ def index():
 
 @app.route('/urgent', methods=['GET', 'POST'])
 def urgent_btn():
-	os.system('python twiliocall.py')
+	#os.system('python twiliocall.py')
 	if request.method == 'POST':
 		return redirect(url_for('index'))
 
