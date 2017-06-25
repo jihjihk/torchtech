@@ -10,16 +10,15 @@ from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import messaging_response
 
 
-url = #same link each time, add that link here 
 while True:
     if len(url)<1: break
 
-    data = urllib.urlopen(url)
-    tree = json.load(data)
-    sos = tree['sos']
-    
-    location_sos = Nominatim().geocode(sos)
-    lat_lon_sos = (location_sos.latitude, location_sos.longitude)
+    freegeoip = "http://freegeoip.net/json"
+    geo_r = requests.get(freegeoip)
+    geo_json = geo_r.json()
+
+    user_postition = [geo_json["latitude"], geo_json["longitude"]]
+    lat_lon_sos = (user_position[0], user_position[1])
 
     
     conn = sqlite.connect('hack1.sqlite')
