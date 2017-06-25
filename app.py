@@ -1,6 +1,5 @@
 from flask import Flask, request, url_for, redirect, render_template
-from flask_googlemaps import GoogleMaps
-import urllib.request
+import urllib
 import json
 import requests
 import codecs
@@ -28,7 +27,7 @@ app = Flask(__name__)
 
 def initialize():
     url = "https://api.myjson.com/bins/10fryj"
-    data = urllib.request.urlopen(url)
+    data = urllib.urlopen(url)
     reader = codecs.getreader('utf-8')
     trees = json.load(reader(data))
 
@@ -71,16 +70,16 @@ def twil(num):
     else: 
         return 1
 
-def json_msg(name,dist):
+# def json_msg(name,dist):
 
-    data = '''
-    {
-    "name" : "%s",
-    "dist" : "%s"
-    }'''%(name,dist)
+#     data = '''
+#     {
+#     "name" : "%s",
+#     "dist" : "%s"
+#     }'''%(name,dist)
 
-    info = json.loads(data)
-    return info
+#     info = json.loads(data)
+#     return info
 
 def smallest():
     conn = sqlite3.connect('hack1.sqlite')
@@ -92,18 +91,17 @@ def smallest():
     thisname = None
     thisnum = None
 
-    maxId = None
-    custId = None
-
     rows = 0
     for row in table:
         rows += 1
+    print(rows)
     for i in range (1,rows+1):
         cursor.execute('''SELECT max(id) FROM People''')
         i = cursor.fetchone()[0]
 
         cursor.execute('''SELECT name FROM People WHERE id = (?)''',(i,))
         name = cursor.fetchone()[0]
+        #print(name)
         #print name
         cursor.execute('''SELECT num FROM People WHERE id = (?)''',(i,))
         num = cursor.fetchone()[0]
@@ -118,9 +116,14 @@ def smallest():
 
         #print(lat_lon_sos)
         dist = vincenty(lat_lon_sos, row_loc).miles
-        #print(dist)
+        print(nearest == None)
+        print(name)
         if dist < nearest or nearest == None:
+            print(dist)
+            print(nearest)
             nearest = dist
+            print(nearest)
+            print('\n')
             thisname = name
             thisnum = num
             #print(nearest)
@@ -129,8 +132,8 @@ def smallest():
     cursor.execute(''' DELETE FROM People WHERE name = ( ? )''', (thisname, )) 
     conn.commit()
     #print(thisname,nearest)
-    result = json_msg(thisname,nearest)
-    #print(thisnum)
+    #result = json_msg(thisname,nearest)
+    print(thisnum+"thisnum")
     return twil(thisnum)
     
 def sending():
