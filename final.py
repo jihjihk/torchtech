@@ -42,7 +42,7 @@ def initialize():
 
 def twil(num):
     account_sid = 'ACed10e34bac3a56da30b364c7eb639799'
-    auth_token = 'f04d7af9f40effaceb83d1b6f2946a62'
+    auth_token = #make this secret
 
     client = Client(account_sid,auth_token)
 
