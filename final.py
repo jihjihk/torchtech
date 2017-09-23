@@ -9,13 +9,14 @@ from geopy.distance import vincenty
 from geopy.geocoders import Nominatim
 import xml.etree.ElementTree as ET
 import os
+import codecs
 from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 
-
 def initialize():
     url = "https://api.myjson.com/bins/10fryj"
-    data = urllib.urlopen(url).read()
+    data = urllib.request.urlopen(url).read().decode('utf-8')
+    #reader = codecs.getreader('utf-8')
     trees = json.loads(data)
 
     conn = sqlite3.connect('hack1.sqlite')
@@ -41,7 +42,7 @@ def initialize():
 
 def twil(num):
     account_sid = 'ACed10e34bac3a56da30b364c7eb639799'
-    auth_token = 'f04d7af9f40effaceb83d1b6f2946a62'
+    auth_token = #make this secret
 
     client = Client(account_sid,auth_token)
 
@@ -50,7 +51,6 @@ def twil(num):
         from_ = "+13475149453",
         body = "SOS. Help needed at link. Reply 1 if you are willing to help. Reply 0 if you arent willing to help."
         )
-    
 
 def smallest():
     conn = sqlite3.connect('hack1.sqlite')

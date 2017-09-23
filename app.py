@@ -200,6 +200,14 @@ def safe_submit_btn():
 		return redirect(url_for('index'))
 	return render_template('safewalk_res.html')
 
+@app.route('/done!', methods=['GET', 'POST'])
+def danger_submit_btn():
+    if request.method == 'POST':
+        return redirect(url_for('index'))
+    return render_template('danger_res.html')
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 
