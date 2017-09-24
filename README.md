@@ -1,1 +1,2 @@
 
+Torchtech allows students to ask help in 3 situations: urgent, potential danger situation, and safe walk. When a student asks for help, a message is sent directly to resident assistants and advisors on campus who can easily track the students' location and navigate to their locations to assist them. The app also allows both victim and bystander to report the incident so that anyone can easily keep track of the situation.
